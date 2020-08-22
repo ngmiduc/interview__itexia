@@ -27,24 +27,11 @@ export default {
       chart: {
         type: "spline"
       },
-
-      legend: {
-        symbolWidth: 40
-      },
-
       title: {
         text: "..."
       },
-
       yAxis: {},
-
       xAxis: {
-        title: {
-          text: "Time"
-        },
-        accessibility: {
-          description: "Time from December 2010 to September 2019"
-        },
         categories: d.map(i => i["JJJJMMDD"])
       },
 
@@ -56,9 +43,7 @@ export default {
         series: {
           point: {
             events: {
-              click: function() {
-                window.location.href = this.series.options.website
-              }
+              click: function() {}
             }
           },
           cursor: "pointer"
@@ -98,43 +83,8 @@ export default {
       ).map(([key, values]) => ({
         name: key,
         data: values,
-        website: "https://www.freedomscientific.com/Products/Blindness/JAWS",
-        dashStyle: "ShortDashDot",
-        color: colors[0]
-      })),
-
-      responsive: {
-        rules: [
-          {
-            condition: {
-              maxWidth: 550
-            },
-            chartOptions: {
-              legend: {
-                itemWidth: 150
-              },
-              xAxis: {
-                categories: [
-                  "Dec. 2010",
-                  "May 2012",
-                  "Jan. 2014",
-                  "July 2015",
-                  "Oct. 2017",
-                  "Sep. 2019"
-                ]
-              },
-              yAxis: {
-                title: {
-                  enabled: false
-                },
-                labels: {
-                  format: "{value}%"
-                }
-              }
-            }
-          }
-        ]
-      }
+        color: colors[Math.round(Math.random(1) * 10)]
+      }))
     })
 
     return {}
