@@ -43,21 +43,21 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   const { isAuthentificated } = composeAuth()
-//
-//   if (to.matched.some(record => !record.meta?.public)) {
-//     if (!isAuthentificated.value) {
-//       next({
-//         path: "/login",
-//         query: { redirect: to.fullPath }
-//       })
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  const { isAuthentificated } = composeAuth()
+
+  if (to.matched.some(record => !record.meta?.public)) {
+    if (!isAuthentificated.value) {
+      next({
+        path: "/login",
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 
 export default router

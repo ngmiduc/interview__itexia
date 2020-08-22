@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <Button
-      label="authentificate"
+      label="🛂 authentificate "
       @click="authentificate()"
       :loading="isLoading"
     />

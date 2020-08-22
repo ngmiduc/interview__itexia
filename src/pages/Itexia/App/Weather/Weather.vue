@@ -1,6 +1,7 @@
 <template>
   <div v-if="isLoading" class="component-loader">
-    <span> ... loading</span>
+    <img src="@/assets/loader.svg" alt="..." />
+    <span> ... loading ⏱️</span>
   </div>
 
   <div v-else class="weather">
@@ -38,7 +39,7 @@ export default {
     const { weather, setData } = composeWeather()
 
     watchEffect(async () => {
-      await fn.wait(200)
+      await fn.wait(1200)
 
       const { data } = await http.get("data/data.json")
 
@@ -61,6 +62,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  img {
+    height: 100px;
+    width: 100px;
+    margin-right: -25px;
+  }
 }
 
 .weather {

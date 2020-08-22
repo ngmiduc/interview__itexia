@@ -30,9 +30,15 @@ export default {
       title: {
         text: "..."
       },
-      yAxis: {},
+      yAxis: {
+        tickLength: 0,
+        gridLineWidth: 0
+      },
       xAxis: {
-        categories: d.map(i => i["JJJJMMDD"])
+        categories: d.map(i => i["JJJJMMDD"]),
+        labels: {
+          enabled: false
+        }
       },
 
       tooltip: {
