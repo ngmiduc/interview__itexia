@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { onMounted } from "vue"
+
 // charts
 import Highcharts from "highcharts"
 import Exporting from "highcharts/modules/exporting"
@@ -17,83 +19,82 @@ import { groupBy } from "lodash"
 export default {
   name: "MyComponent",
 
-  props: { data: Object },
-  mounted() {
-    var colors = Highcharts.getOptions().colors
+  props: { data: Array },
+  setup(props) {
+    onMounted(() => {
+      const colors = Highcharts.getOptions().colors
+      const cartData = props.data
 
-    const d = JSON.parse(JSON.stringify(JSONDATA))
-
-    Highcharts.chart("container", {
-      chart: {
-        type: "spline"
-      },
-      title: {
-        text: "..."
-      },
-      yAxis: {
-        tickLength: 0,
-        gridLineWidth: 0
-      },
-      xAxis: {
-        categories: d.map(i => i["JJJJMMDD"]),
-        labels: {
-          enabled: false
-        }
-      },
-
-      tooltip: {
-        valueSuffix: "%"
-      },
-
-      plotOptions: {
-        series: {
-          point: {
-            events: {
-              click: function() {}
-            }
-          },
-          cursor: "pointer"
-        }
-      },
-
-      series: Object.entries(
-        d.reduce(
-          (current, acc) => {
-            const keys = Object.keys(current)
-
-            let result = {}
-
-            keys.forEach(key => {
-              result[key] = [...current[key], acc[key]]
-            })
-
-            return result
-          },
-          {
-            // STAT: [],
-            // JJJJMMDD: [],
-            QN: [],
-            TG: [],
-            TN: [],
-            TM: [],
-            TX: [],
-            // RFM: [],
-            FM: [],
-            FX: [],
-            SO: [],
-            NM: [],
-            RR: []
-            // PM: []
+      Highcharts.chart("container", {
+        chart: {
+          type: "spline"
+        },
+        title: {
+          text: "..."
+        },
+        yAxis: {
+          tickLength: 0,
+          gridLineWidth: 0
+        },
+        xAxis: {
+          categories: cartData.map(i => i["JJJJMMDD"]),
+          labels: {
+            enabled: false
           }
-        )
-      ).map(([key, values]) => ({
-        name: key,
-        data: values,
-        color: colors[Math.round(Math.random(1) * 10)]
-      }))
-    })
+        },
 
-    return {}
+        tooltip: {
+          valueSuffix: "%"
+        },
+
+        plotOptions: {
+          series: {
+            point: {
+              events: {
+                click: function() {}
+              }
+            },
+            cursor: "pointer"
+          }
+        },
+
+        series: Object.entries(
+          cartData.reduce(
+            (current, acc) => {
+              const keys = Object.keys(current)
+
+              let result = {}
+
+              keys.forEach(key => {
+                result[key] = [...current[key], acc[key]]
+              })
+
+              return result
+            },
+            {
+              // STAT: [],
+              // JJJJMMDD: [],
+              QN: [],
+              TG: [],
+              TN: [],
+              TM: [],
+              TX: [],
+              // RFM: [],
+              FM: [],
+              FX: [],
+              SO: [],
+              NM: [],
+              RR: []
+              // PM: []
+            }
+          )
+        ).map(([key, values]) => ({
+          name: key,
+          data: values,
+          color: colors[Math.round(Math.random(1) * 10)]
+        }))
+      })
+    })
   }
 }
 </script>

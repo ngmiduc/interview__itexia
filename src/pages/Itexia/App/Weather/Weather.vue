@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { watchEffect, watch } from "vue"
+import { watchEffect, watch, computed } from "vue"
 
 // composition
 import composeLoading from "@/compositions/composeLoading"
@@ -49,7 +49,7 @@ export default {
 
     return {
       isLoading,
-      weatherData: weather.data
+      weatherData: computed(() => weather.data)
     }
   }
 }
