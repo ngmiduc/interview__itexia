@@ -49,7 +49,7 @@ export default {
 
     return {
       isLoading,
-      weatherData: computed(() => weather.data)
+      weatherData: computed(() => weather?.data)
     }
   }
 }

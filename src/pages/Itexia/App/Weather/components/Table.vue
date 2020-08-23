@@ -1,7 +1,7 @@
 <template>
   <div class="table-weather">
     <input v-model="searchValue" placeholder="search me 🔎" />
-    <data-table :data="weather.data" :header="header" :filterBy="filter">
+    <data-table :data="weatherData" :header="header" :filterBy="filter">
       <template v-slot="{ columnSizes, columns, record }">
         <div
           class="scoped-list-item"
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { ref } from "vue"
+import { ref, computed } from "vue"
 
 // components
 import { DataTable } from "@/components"
@@ -48,7 +48,7 @@ export default {
     const { weather } = composeWeather()
 
     return {
-      weather,
+      weatherData: computed(() => weather?.data ?? []),
       searchValue,
       filter: {
         value: searchValue,

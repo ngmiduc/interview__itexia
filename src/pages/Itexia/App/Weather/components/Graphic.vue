@@ -10,12 +10,6 @@ import Highcharts from "highcharts"
 import Exporting from "highcharts/modules/exporting"
 Exporting(Highcharts)
 
-// data
-import JSONDATA from "./data.json"
-
-// lodash
-import { groupBy } from "lodash"
-
 export default {
   name: "MyComponent",
 
@@ -23,7 +17,7 @@ export default {
   setup(props) {
     onMounted(() => {
       const colors = Highcharts.getOptions().colors
-      const cartData = props.data
+      const cartData = props.data ?? []
 
       Highcharts.chart("container", {
         chart: {
