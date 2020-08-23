@@ -1,10 +1,5 @@
 <template>
-  <div v-if="isLoading" class="component-loader">
-    <img src="@/assets/loader.svg" alt="..." />
-    <span> ... loading ⏱️</span>
-  </div>
-
-  <div v-else class="weather">
+  <div class="weather">
     <h2>🌞 Weather information of 🏙️ Magdeburg</h2>
 
     <Table />
@@ -33,19 +28,21 @@ export default {
   name: "weather",
   components: { Graphic, Table },
 
-  setup() {
+  async setup() {
     const http = composeHttp()
     const { setLoading, isLoading } = composeLoading(true)
     const { weather, setData } = composeWeather()
 
-    watchEffect(async () => {
+    const initState = async () => {
       await fn.wait(1200)
 
       const { data } = await http.get("data/data.json")
 
       setData(data)
       setLoading(false)
-    })
+    }
+
+    await initState()
 
     return {
       isLoading,

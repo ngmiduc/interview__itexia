@@ -1,15 +1,31 @@
 <template>
-  <div class="itexia"><router-view /></div>
+  <div v-if="error" class="error-boundary">
+    <span>{{ error }}</span>
+  </div>
+  <div v-else class="itexia"><router-view /></div>
 </template>
 
 <script>
+import { ref, onErrorCaptured } from "vue"
+
 export default {
   name: "itexia",
-  components: {}
+  setup() {
+    const error = ref(null)
+
+    onErrorCaptured(e => (error.value = e))
+
+    return { error }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.error-boundary {
+  background-color: rgb(112, 0, 0);
+  color: white;
+  padding: 16px;
+}
 .itexia {
   height: 100vh;
   width: 100vw;
