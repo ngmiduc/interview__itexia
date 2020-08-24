@@ -1,9 +1,8 @@
 <template>
   <div class="weather">
     <h2>🌞 Weather information of 🏙️ Magdeburg</h2>
-
     <Table />
-    <Graphic :data="weatherData" />
+    <Graphic />
   </div>
 </template>
 
@@ -31,7 +30,7 @@ export default {
   async setup() {
     const http = composeHttp()
     const { setLoading, isLoading } = composeLoading(true)
-    const { weather, setData } = composeWeather()
+    const { setData } = composeWeather()
 
     const initState = async () => {
       await fn.wait(1200)
@@ -45,8 +44,7 @@ export default {
     await initState()
 
     return {
-      isLoading,
-      weatherData: computed(() => weather?.data)
+      isLoading
     }
   }
 }

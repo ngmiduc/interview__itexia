@@ -10,14 +10,16 @@ import Highcharts from "highcharts"
 import Exporting from "highcharts/modules/exporting"
 Exporting(Highcharts)
 
-export default {
-  name: "MyComponent",
+// store
+import composeWeather from "@/store/weather"
 
-  props: { data: Array },
-  setup(props) {
+export default {
+  name: "component-graphic",
+  setup() {
     onMounted(() => {
+      const { weather } = composeWeather()
       const colors = Highcharts.getOptions().colors
-      const cartData = props.data ?? []
+      const cartData = weather.dataasd
 
       Highcharts.chart("container", {
         chart: {
@@ -68,17 +70,17 @@ export default {
             {
               // STAT: [],
               // JJJJMMDD: [],
-              QN: [],
+              // QN: [],
               TG: [],
               TN: [],
               TM: [],
-              TX: [],
+              TX: []
               // RFM: [],
-              FM: [],
-              FX: [],
-              SO: [],
-              NM: [],
-              RR: []
+              // FM: [],
+              // FX: [],
+              // SO: [],
+              // NM: [],
+              // RR: []
               // PM: []
             }
           )

@@ -2,7 +2,7 @@
   <div v-if="error" class="error-boundary">
     <span>{{ error }}</span>
   </div>
-  <div v-else class="itexia"><router-view /></div>
+  <div class="itexia"><router-view /></div>
 </template>
 
 <script>
