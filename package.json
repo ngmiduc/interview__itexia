@@ -18,7 +18,7 @@
     "lodash": "^4.17.20",
     "vue": "^3.0.0-beta.1",
     "vue-chartjs": "^3.5.0",
-    "vue-google-calendar": "^0.2.2",
+    "vue-google-calendar": "^0.3.2",
     "vue-highcharts": "^0.1.0",
     "vue-i18n": "^8.21.0",
     "vue-i18next2": "^2.2.0",

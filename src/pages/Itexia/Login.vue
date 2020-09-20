@@ -5,7 +5,9 @@
       @click="authentificate()"
       :loading="isLoading"
     />
-    <vue-google-calendar :data="[]" />
+    <div class="wrapper">
+      <vue-google-calendar :data="data" />
+    </div>
   </div>
 </template>
 
@@ -20,7 +22,8 @@ import composeRouter from "@/compositions/composeRouter"
 // store
 import composeAuth from "@/store/auth"
 
-const VueGoogleCalendar = require("vue-google-calendar")
+import VueGoogleCalendar from "vue-google-calendar/src/vue-google-calendar"
+import data from "./test.data.js"
 
 export default {
   name: "login",
@@ -45,7 +48,8 @@ export default {
     return {
       isAuthentificated,
       authentificate,
-      isLoading
+      isLoading,
+      data
     }
   }
 }
@@ -60,5 +64,11 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  .wrapper {
+    margin-top: 16px;
+    height: 500px;
+    width: 1000px;
+  }
 }
 </style>
